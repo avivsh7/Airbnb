@@ -7,3 +7,5 @@ There are three sections, bookings (your ordered airbnbs), accomodations (your a
 FrontEnd made using React Vite, TailwindCSS, Axios, and Date-fns.
 BackEnd made using Mongoose, Express.js, Bcryptjs, Cookie-Parser, JsonWebToken, Multer and Dotenv.
 
+Testing change
+
