@@ -20,4 +20,5 @@ PlacesPage.jsx: This page is accessible from the "My accommodations" section of 
 PlacesFormPage.jsx: On this page you edit the information about the airbnb listing, including: the title, address, photos (a UI to upload photos using a link, uploading from your computer, deleting a photo, and starring one photo to be the preview photo of the airbnb on the homepage), description, perks (such as Wifi, Radio, Free parking spot, Pets, TV, Private entrance), extra info, check-in and check-out times, number of guests, and price per night. A save button.
 
 Front-end made using React, Vite, TailwindCSS, Axios, and Date-fns.
+
 Back-end made using Mongoose, Express.js, Bcryptjs, Cookie-Parser, JsonWebToken, Multer and Dotenv.
