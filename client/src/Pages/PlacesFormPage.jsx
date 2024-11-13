@@ -102,7 +102,6 @@ export default function PlacesFormPage() {
                 <div className="grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg: grid-cols-6">
                     <Perks selected={perks} onChange={setPerks} />
                 </div>
-                <input className="text-xl mt-4" put type="text" placeholder="title, for example my lovely apt" />
                 {preInput('Extra Info', 'house, rules, etc')}
                 <textarea value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)} />
                 {preInput('Check in&out times', 'Add check in', 'Add check in&out times, remember to have some time window for cleaning the room between guests')}
