@@ -1,8 +1,10 @@
 # Airbnb Project
 This site allows registered users to log in and new users to sign up.
 The site contains the following pages:
+
 LoginPage.jsx: Contains username and password fields for log in, and a link to register page if not signed up already. 
 A successful log in redirects to IndexPage.jsx and the user name would be listed in the top right corner of the page indicating that the user is logged in throughout the different pages of the site.
+
 IndexPage.jsx: The site's homepage, displaying a grid of all airbnbs, each has its title, location and price per night.
 PlacePage.jsx: If you click on a specific airbnb on IndexPage.jsx, redirects to this page, showing more details about the airbnb including the airbnb's title, location, description, and price per night. If both the check-in and check-out date inputs are filled, another div would appear asking to fill your name and phone number. The price for the dates chosen would be automatically calculated in the button "Book this place ${booking.price}".
 ProfilePage.jsx: When clicking the username in the top right corner, you would be redirected to this page. This page contains a navigation menu with three buttons: "My profile", "My bookings" and "My accommodations" (My profile is chosen on default), Displaying the text "Logged in as {user.name} ({user.email})" and a button below to log out.
