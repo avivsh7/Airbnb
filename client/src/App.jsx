@@ -13,7 +13,7 @@ import PlacePage from './Pages/PlacePage';
 import BookingsPage from './Pages/BookingsPage';
 import BookingPage from './Pages/BookingPage';
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'https://jmkunh6u2v.us-east-1.awsapprunner.com';
 axios.defaults.withCredentials = true;
 
 function App() {

@@ -16,7 +16,7 @@ export default function IndexPage() {
                 <Link to={'/place/' + place._id}>
                     <div className="mb-2 bg-gray-500 rounded-2xl flex">
                         {place.photos?.[0] && (
-                            <img className="py-2rounded-2xl object-cover aspect-square" src={'http://localhost:3000/uploads/' + place.photos?.[0]} alt="" />
+                            <img className="py-2rounded-2xl object-cover aspect-square" src={'https://jmkunh6u2v.us-east-1.awsapprunner.com/uploads/' + place.photos?.[0]} alt="" />
                         )}
                     </div>
                     <h2 className="font-bold">{place.address}</h2>
