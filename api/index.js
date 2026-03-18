@@ -14,6 +14,10 @@ const Booking = require('./models/Booking.js');
 require('dotenv').config();
 const app = express();
 
+app.use(cors({
+    credentials: true,
+    origin: 'https://jmkunh6u2v.us-east-1.awsapprunner.com',
+}));
 
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = 'fasefraw4r5r3wq45wdfgw34twdfg';
@@ -21,13 +25,10 @@ const jwtSecret = 'fasefraw4r5r3wq45wdfgw34twdfg';
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname+'/uploads'));
-app.use(cors({
-    credentials: true,
-    origin: 'https://main.d128oouv6upg74.amplifyapp.com',
-}));
+
 mongoose.connect(process.env.MONGO_URL);
 
-app.get('/', (req,res) => {
+app.get('/test', (req,res) => {
     res.json('test ok')
 });
 
