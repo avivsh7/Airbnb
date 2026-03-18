@@ -59,22 +59,29 @@ app.post('/register', async (req,res) => {
 
 app.post('/login', async (req,res) => {
     const {email,password} = req.body;
-    const userDoc = await User.findOne({email});
-    if (userDoc) {
-        const passOk = bcrypt.compareSync(password, userDoc.password)
-        if (passOk) {
-            jwt.sign({
-                email:userDoc.email,
-                id:userDoc._id,
+    try {
+        const userDoc = await User.findOne({email});
+        if (userDoc) {
+            const passOk = bcrypt.compareSync(password, userDoc.password);
+            if (passOk) {
+                jwt.sign({
+                    email:userDoc.email,
+                    id:userDoc._id,
                 }, jwtSecret, {}, (err,token) => {
-                if (err) throw err;
-                res.cookie('token', token).json(userDoc);
-            });
+                    if (err) throw err;
+                    res.cookie('token', token, {
+                        sameSite: 'none',
+                        secure: true,
+                    }).json(userDoc);
+                });
+            } else {
+                res.status(422).json('pass not ok');
+            }
         } else {
-            res.status(422).json('pass not ok');
+            res.status(404).json('not found');
         }
-    } else {
-        res.json('not found');
+    } catch (e) {
+        res.status(500).json(e);
     }
 });
 
@@ -91,8 +98,12 @@ app.get('/profile', (req,res) => {
     }
 })
 
-app.post('/logout', (req,res) => {
-    res.cookie('token', '').json(true);
+app.post('/logout', (req, res) => {
+    res.cookie('token', '', {
+        sameSite: 'none',
+        secure: true,
+        expires: new Date(0) 
+    }).json(true);
 });
 
 app.post('/upload-by-link', async (req,res) => {
@@ -137,8 +148,17 @@ app.post('/places', (req,res) => {
 });
 
 app.get('/user-places', async (req,res) => {
-    const userData = await getUserDataFromReq(req);
-    res.json(await Place.find({owner:userData.id}) );
+    try {
+        const userData = await getUserDataFromReq(req);
+        if (!userData) {
+            return res.status(401).json({error: "User not authenticated"});
+        }
+        const places = await Place.find({owner:userData.id});
+        res.json(places);
+    } catch (e) {
+        console.error("Error fetching user places:", e);
+        res.status(500).json({error: "Internal server error"});
+    }
 });
 
 app.get('/places/:id', async (req,res) => {
