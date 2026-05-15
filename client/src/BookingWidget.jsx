@@ -25,15 +25,19 @@ export default function BookingWidget({ place }) {
         numberOfNights = differenceInCalendarDays(new Date(checkOut), new Date(checkIn));
     }
 
-    async function bookThisPlace() {
-        const response = await axios.post('/bookings', {
-            checkIn, checkOut, numberOfGuests, name, phone,
-            place: place._id,
-            price: numberOfNights * place.price
-        });
-        const bookingId = response.data._id;
-        setRedirect(`/account/bookings/${bookingId}`);
+async function bookThisPlace() {
+    if (!checkIn || !checkOut) {
+        alert('Please select check-in and check-out dates to continue.');
+        return;
     }
+    const response = await axios.post('/bookings', {
+        checkIn, checkOut, numberOfGuests, name, phone,
+        place: place._id,
+        price: numberOfNights * place.price
+    });
+    const bookingId = response.data._id;
+    setRedirect(`/account/bookings/${bookingId}`);
+}
 
     if (redirect) {
         return <Navigate to={redirect} />
